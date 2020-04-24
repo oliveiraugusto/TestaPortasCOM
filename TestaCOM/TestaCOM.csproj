@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9840E4E6-3C5D-4F2F-8C55-5AE3A7573895}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>TestaPortasCOM</RootNamespace>
-    <AssemblyName>TestaPortasCOM</AssemblyName>
+    <ProjectGuid>{F65241E2-5F87-4A42-A5D2-E6DEE2E2156F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TestaCOM</RootNamespace>
+    <AssemblyName>TestaCOM</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -39,51 +39,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormReceiveData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormReceiveData.Designer.cs">
-      <DependentUpon>FormReceiveData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormTestPort.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTestPort.Designer.cs">
-      <DependentUpon>FormTestPort.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormReceiveData.resx">
-      <DependentUpon>FormReceiveData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTestPort.resx">
-      <DependentUpon>FormTestPort.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

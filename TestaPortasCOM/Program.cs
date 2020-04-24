@@ -8,6 +8,7 @@ namespace TestaPortasCOM
 {
     static class Program
     {
+        public static string NamePort { get; set; }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +17,7 @@ namespace TestaPortasCOM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormTestPort());
         }
     }
 }
