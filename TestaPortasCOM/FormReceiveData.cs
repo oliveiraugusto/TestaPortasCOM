@@ -56,7 +56,6 @@ namespace TestaPortasCOM
             }
             catch (Exception ex)
             {
-
                 throw new Exception($"Não Não foi possivel recolher dados da porta {Program.NamePort}\nDetalhes:\n" + ex.Message);
             }
         }
