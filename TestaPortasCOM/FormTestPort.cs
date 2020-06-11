@@ -13,52 +13,47 @@ namespace TestaPortasCOM
 {
     public partial class FormTestPort : Form
     {
+        public string ListViewDadosCOM
+        {
+            set
+            {
+                listViewDadosCOM.Items.Add(value);
+            }
+        }
+
         public FormTestPort()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormTestPort_Load(object sender, EventArgs e)
         {
-            ComTest();
-        }
-        public void ComTest()
-        {
-            listViewComPorts.Clear();
             var ports = SerialPort.GetPortNames();
-            if(ports.Count() == 0)
+            comboBoxPortas.Sorted = true;
+            foreach (var p in ports)
             {
-                listViewComPorts.Items.Add("Não existem portas COM disponiveis ou configuradas neste dispositivo");
+                comboBoxPortas.Items.Add(p);
             }
-            else
-            {
-                foreach (var port in ports)
-                {
-                    listViewComPorts.Items.Add(port);
-                }
-            } 
-        }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ComTest();
         }
 
         private void buttonTestPort_Click(object sender, EventArgs e)
-        {            
-            if(!string.IsNullOrEmpty(listViewComPorts.SelectedItems[0].Text))
+        {
+           if(serialPortCOM.IsOpen)
             {
-                Program.NamePort = listViewComPorts.SelectedItems[0].Text;
-                var frd = new FormReceiveData();
-                frd.Show();
+                buttonTestPort.Text = "Parar";
+                serialPortCOM.Close();
             }
-            else
+           else
             {
-                MessageBox.Show("Selecione uma porta COM");
+                buttonTestPort.Text = "Testar";
+                COMCommunicate.Communicate(comboBoxPortas.Text);
             }
-            
+        }
+
+        private void buttonRefreshPort_Click(object sender, EventArgs e)
+        {
+            InitializeComponent();
         }
     }
 }

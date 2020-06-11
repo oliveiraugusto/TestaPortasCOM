@@ -28,20 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listViewComPorts = new System.Windows.Forms.ListView();
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRefreshPort = new System.Windows.Forms.Button();
             this.buttonTestPort = new System.Windows.Forms.Button();
+            this.comboBoxPortas = new System.Windows.Forms.ComboBox();
+            this.listViewDadosCOM = new System.Windows.Forms.ListView();
+            this.serialPortCOM = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
-            // 
-            // listViewComPorts
-            // 
-            this.listViewComPorts.HideSelection = false;
-            this.listViewComPorts.Location = new System.Drawing.Point(16, 46);
-            this.listViewComPorts.Name = "listViewComPorts";
-            this.listViewComPorts.Size = new System.Drawing.Size(197, 250);
-            this.listViewComPorts.TabIndex = 0;
-            this.listViewComPorts.UseCompatibleStateImageBehavior = false;
             // 
             // label1
             // 
@@ -55,50 +49,72 @@
             // 
             // buttonRefreshPort
             // 
-            this.buttonRefreshPort.Location = new System.Drawing.Point(16, 312);
+            this.buttonRefreshPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefreshPort.Location = new System.Drawing.Point(12, 92);
             this.buttonRefreshPort.Name = "buttonRefreshPort";
-            this.buttonRefreshPort.Size = new System.Drawing.Size(90, 23);
+            this.buttonRefreshPort.Size = new System.Drawing.Size(98, 34);
             this.buttonRefreshPort.TabIndex = 2;
             this.buttonRefreshPort.Text = "Atualizar";
             this.buttonRefreshPort.UseVisualStyleBackColor = true;
-            this.buttonRefreshPort.Click += new System.EventHandler(this.button1_Click);
+            this.buttonRefreshPort.Click += new System.EventHandler(this.buttonRefreshPort_Click);
             // 
             // buttonTestPort
             // 
-            this.buttonTestPort.Location = new System.Drawing.Point(112, 312);
+            this.buttonTestPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTestPort.Location = new System.Drawing.Point(111, 92);
             this.buttonTestPort.Name = "buttonTestPort";
-            this.buttonTestPort.Size = new System.Drawing.Size(101, 23);
+            this.buttonTestPort.Size = new System.Drawing.Size(98, 34);
             this.buttonTestPort.TabIndex = 3;
-            this.buttonTestPort.Text = "Testar Porta";
+            this.buttonTestPort.Text = "Testar";
             this.buttonTestPort.UseVisualStyleBackColor = true;
             this.buttonTestPort.Click += new System.EventHandler(this.buttonTestPort_Click);
             // 
-            // Form1
+            // comboBoxPortas
+            // 
+            this.comboBoxPortas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxPortas.FormattingEnabled = true;
+            this.comboBoxPortas.Location = new System.Drawing.Point(12, 58);
+            this.comboBoxPortas.Name = "comboBoxPortas";
+            this.comboBoxPortas.Size = new System.Drawing.Size(197, 28);
+            this.comboBoxPortas.TabIndex = 4;
+            // 
+            // listViewDadosCOM
+            // 
+            this.listViewDadosCOM.HideSelection = false;
+            this.listViewDadosCOM.Location = new System.Drawing.Point(16, 152);
+            this.listViewDadosCOM.Name = "listViewDadosCOM";
+            this.listViewDadosCOM.Size = new System.Drawing.Size(193, 267);
+            this.listViewDadosCOM.TabIndex = 5;
+            this.listViewDadosCOM.UseCompatibleStateImageBehavior = false;
+            // 
+            // FormTestPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(229, 347);
+            this.ClientSize = new System.Drawing.Size(229, 431);
+            this.Controls.Add(this.listViewDadosCOM);
+            this.Controls.Add(this.comboBoxPortas);
             this.Controls.Add(this.buttonTestPort);
             this.Controls.Add(this.buttonRefreshPort);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listViewComPorts);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "FormTestPort";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TestCOM";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormTestPort_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listViewComPorts;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRefreshPort;
         private System.Windows.Forms.Button buttonTestPort;
+        private System.Windows.Forms.ComboBox comboBoxPortas;
+        private System.IO.Ports.SerialPort serialPortCOM;
+        public System.Windows.Forms.ListView listViewDadosCOM;
     }
 }
 
