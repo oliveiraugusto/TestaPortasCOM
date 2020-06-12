@@ -9,9 +9,7 @@ using System.Text.RegularExpressions;
 namespace TestaCOM
 {
     public class COMCommunicate
-    {
-        protected static List<char> Indata { get; set; } = new List<char>();
-
+    {      
         public static void Communicate(string portName)
         {
             try
@@ -21,7 +19,9 @@ namespace TestaCOM
                 mySerialPort.Parity = Parity.None;
                 mySerialPort.StopBits = StopBits.One;
                 mySerialPort.DataBits = 8;
-                //mySerialPort.DtrEnable = true;
+                mySerialPort.RtsEnable = true;
+                mySerialPort.Handshake = Handshake.None;
+                //mySerialPort.ReadTimeout = 100;
 
                 mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
@@ -29,7 +29,6 @@ namespace TestaCOM
 
                 Console.WriteLine("Recebendo dados...\n");
                 Console.ReadKey();
-                //Console.Write($"{DateTime.Now} ");
                 mySerialPort.Close();             
             }
             catch (Exception ex)
@@ -39,49 +38,33 @@ namespace TestaCOM
                         
         }
 
+
+        /// <summary>
+        /// Recebe, imprime e grava em arquivo  resultado da porta COM
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
+            string Indata = string.Empty;
+
             try
             {
-                while (Indata.Count >= 0 && Indata.Count < 23)
+                //enquanto não encontrar o caractere de escape "\r" continua buscando dados na porta COM e colocando na variavel
+                while(!Indata.Contains("\r"))
                 {
                     var sp = (SerialPort)sender;
-                    var temp = sp.ReadExisting();
-                    if(temp.Length <= 23)
-                    {
-                        foreach (var t in temp.ToCharArray(0, temp.Length))
-                        {
-                            if(Indata.Count < 23)
-                                Indata.Add(t);
-                        }                        
-                    } 
-                    else
-                    {
-                        foreach (var t in temp.ToCharArray(0, 23))
-                        {
-                            if (Indata.Count < 23)
-                                Indata.Add(t);
-                        }
-                    }
+                    Indata += sp.ReadExisting();
                 }
 
-                if (Indata.Count == 23)
-                {
-                    string flow = "";
-                    foreach (var i in Indata)
-                    {
-                        flow += i;
-                    }
+                //Após encontrar o caractere de escape, imprime com a data na tela
+                var data = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                Console.WriteLine($"{data}--{Indata}");
 
-                    flow = Regex.Replace(flow, "[^0-9a-z A-Z.]+", "");
-
-                    var data = new StreamWriter("data", true);
-                    data.WriteLine($"{DateTime.Now} {flow.ToString()}");
-                    data.Close();
-                    Console.WriteLine($"{DateTime.Now} {flow.ToString()}");
-                    //if(Indata.Count == 23)
-                        Indata.Clear();
-                }
+                //guarda no arquivo com data
+                var text = new StreamWriter("data", true);
+                text.Write($"{data}--{Indata}");
+                text.Close();                
             }
             catch (Exception ex)
             {
